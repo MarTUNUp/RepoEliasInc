@@ -16,5 +16,10 @@ public class Controls : MonoBehaviour
     {
         //Steuerung
         rigidbody.MovePosition(new Vector2 (transform.position.x + speed * Input.GetAxis("Horizontal") * Time.deltaTime, transform.position.y + speed * Input.GetAxis("Vertical") * Time.deltaTime));
+
+        if (Input.GetAxis("Horizontal") > 0)
+            transform.localScale = new Vector3(0.25f, 0.25f, 1);
+        else if (Input.GetAxis("Horizontal") < 0)
+            transform.localScale = new Vector3(-0.25f, 0.25f, 1);
     }
 }
