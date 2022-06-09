@@ -10,6 +10,6 @@ public class Level : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(0, transform.position.y - 5 * Time.deltaTime, 0f);
+        transform.position = new Vector3(0, transform.position.y - 1 * Time.deltaTime, 0f);
     }
 }
