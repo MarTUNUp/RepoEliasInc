@@ -11,6 +11,10 @@ public class Wave : MonoBehaviour
     private void Start()
     {
         level = GetComponentInParent<Level>();
+
+        //Drehung
+        if (hSpeed < 0)
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y,transform.localScale.z);
     }
 
     void FixedUpdate()
