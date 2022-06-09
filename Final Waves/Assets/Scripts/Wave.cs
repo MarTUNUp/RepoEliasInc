@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Wave : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float hSpeed = 0f;
+    public float vSpeed = 5f;
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        //Steuerung
+        transform.position = new Vector3(transform.position.x + hSpeed * Time.deltaTime, transform.position.y + vSpeed * Time.deltaTime,0f);
     }
 }
