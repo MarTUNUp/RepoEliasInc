@@ -15,9 +15,12 @@ public class Controls : MonoBehaviour
     private short lifeCount = 3;
     private GameObject[] lifes;
 
+    private float defaultScale;
+
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        defaultScale = transform.localScale.x;
 
         //Lebensanzeige generieren
         lifes = new GameObject[defaultLife];
@@ -37,9 +40,9 @@ public class Controls : MonoBehaviour
 
         //Drehung
         if (Input.GetAxis("Horizontal") > 0)
-            transform.localScale = new Vector3(0.25f, 0.25f, 1);
+            transform.localScale = new Vector3(defaultScale, transform.localScale.y, transform.localScale.z);
         else if (Input.GetAxis("Horizontal") < 0)
-            transform.localScale = new Vector3(-0.25f, 0.25f, 1);
+            transform.localScale = new Vector3(-defaultScale, transform.localScale.y, transform.localScale.z);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) //Kollisionserkennung
