@@ -1,15 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Controls : MonoBehaviour
 {
     private Rigidbody2D rigidbody;
+    public GameObject panel;
+    public GameObject life;
+    public float hMargin = 30f;
+    public float vMargin = 0f;
     public float speed = 5f;
+    public short defaultLife = 3;
+    public short lifeCount = 3;
+    private GameObject[] lifes;
 
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        lifes = new GameObject[defaultLife];
+        for(int i = 0; i < defaultLife; i++)
+        {
+            lifes[i] = Instantiate(life);
+            lifes[i].transform.SetParent(panel.transform);
+            lifes[i].GetComponent<RectTransform>().localPosition =new Vector3(hMargin*i,vMargin*i, 0);
+        }
     }
 
     void FixedUpdate()
@@ -27,7 +42,6 @@ public class Controls : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Peng!");
         Destroy(this.gameObject);
     }
 }
