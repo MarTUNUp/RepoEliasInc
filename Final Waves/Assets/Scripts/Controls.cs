@@ -12,12 +12,14 @@ public class Controls : MonoBehaviour
     public float vMargin = 0f;
     public float speed = 5f;
     public short defaultLife = 3;
-    public short lifeCount = 3;
+    private short lifeCount = 3;
     private GameObject[] lifes;
 
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+
+        //Lebensanzeige generieren
         lifes = new GameObject[defaultLife];
         for(int i = 0; i < defaultLife; i++)
         {
@@ -40,8 +42,31 @@ public class Controls : MonoBehaviour
             transform.localScale = new Vector3(-0.25f, 0.25f, 1);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //Kollisionserkennung
     {
-        Destroy(this.gameObject);
+        setLife((short)(getLife() - 1));
+    }
+
+    public short getLife()
+    {
+        return lifeCount;
+    }
+
+    public void setLife(short value)
+    {
+        if (value > defaultLife)
+            lifeCount = defaultLife;
+        else if (value < 0)
+            lifeCount = 0;
+        else
+            lifeCount = value;
+
+        for (int i = 0; i < defaultLife; i++)
+        {
+            if (lifeCount < i)
+                lifes[i].SetActive(false);
+            else
+                lifes[i].SetActive(true);
+        }
     }
 }
