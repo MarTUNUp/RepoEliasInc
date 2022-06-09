@@ -63,7 +63,7 @@ public class Controls : MonoBehaviour
 
         for (int i = 0; i < defaultLife; i++)
         {
-            if (lifeCount < i)
+            if (lifeCount < i+1)
                 lifes[i].SetActive(false);
             else
                 lifes[i].SetActive(true);
